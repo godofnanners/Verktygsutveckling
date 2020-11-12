@@ -6,9 +6,20 @@ namespace CsharpConsoleApplication_Labb01
 {
     class Enemy : Character
     {
+        int[] myPrey;
         public Enemy(int[] aPos, char aChar) : base(aPos, aChar)
         {
 
+        }
+
+        public void Init(int[] aPrey)
+        {
+            myPrey = aPrey;
+        }
+
+        public void Update()
+        {
+            HuntPlayer(myPrey);
         }
 
         public void HuntPlayer(int[] aPos)
@@ -38,6 +49,11 @@ namespace CsharpConsoleApplication_Labb01
                     Move(Directions.Up);
                 }
             }
+        }
+
+        public void Render()
+        {
+            Renderer.Render(myChar, myPos);
         }
     }
 }

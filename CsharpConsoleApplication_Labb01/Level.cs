@@ -7,21 +7,31 @@ namespace CsharpConsoleApplication_Labb01
 {
     class Level
     {
-        private string myLevel;
-        int myWidth;
+        private char[] myLevel;
+        private static int myWidth;
         int myHeight;
         public Level()
         {
         }
 
+        public static int Width
+        {
+            get { return myWidth; }
+        }
+
         public void Init(string aLevelPath)
         {
-            myLevel = File.ReadAllText(aLevelPath);
+            myLevel = File.ReadAllText(aLevelPath).ToCharArray();
         }
 
         public char GetCharAtPos(int[] aPos)
         {
             return myLevel[aPos[0]+aPos[1]*myWidth];
+        }
+        
+        public void Render()
+        {
+            Renderer.Render(myLevel);
         }
     }
 }
