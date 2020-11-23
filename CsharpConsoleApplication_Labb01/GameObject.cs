@@ -7,12 +7,17 @@ namespace CsharpConsoleApplication_Labb01
 {
     class GameObject
     {
-        protected int[] myPos;
+        protected Vector2 myPos;
         protected char myChar;
-        protected GameObject(int[] aPos, char aChar)
+        protected GameObject(Vector2 aPos, char aChar)
         {
             myPos = aPos;
             myChar = aChar;
+        }
+
+        public void Render()
+        {
+            Renderer.Render(myChar, myPos);
         }
     }
 }

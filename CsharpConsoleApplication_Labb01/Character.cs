@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Numerics;
 using System.Text;
 
 namespace CsharpConsoleApplication_Labb01
@@ -15,7 +16,7 @@ namespace CsharpConsoleApplication_Labb01
             Left
         }
 
-        protected Character(int[] aPos, char aChar) : base(aPos, aChar)
+        protected Character(Vector2 aPos, char aChar) : base(aPos, aChar)
         {
 
         }
@@ -25,16 +26,16 @@ namespace CsharpConsoleApplication_Labb01
             switch (aDirection)
             {
                 case Directions.Up:
-                    myPos[1] -= 1;
+                    myPos.Y -= 1;
                     break;
                 case Directions.Down:
-                    myPos[1] += 1;
+                    myPos.Y += 1;
                     break;
                 case Directions.Left:
-                    myPos[0] -= 1;
+                    myPos.X -= 1;
                     break;
                 case Directions.Right:
-                    myPos[0] += 1;
+                    myPos.X += 1;
                     break;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Numerics;
 
 namespace CsharpConsoleApplication_Labb01
 {
@@ -22,11 +23,12 @@ namespace CsharpConsoleApplication_Labb01
         public void Init(string aLevelPath)
         {
             myLevel = File.ReadAllText(aLevelPath).ToCharArray();
+            myWidth = 55;
         }
 
-        public char GetCharAtPos(int[] aPos)
+        public char GetCharAtPos(Vector2 aPos)
         {
-            return myLevel[aPos[0]+aPos[1]*myWidth];
+            return myLevel[(int)aPos.X+(int)aPos.Y*myWidth];
         }
         
         public void Render()

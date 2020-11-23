@@ -10,7 +10,7 @@ namespace CsharpConsoleApplication_Labb01
             bool shouldPlay=true;
             while (shouldPlay)
             {
-                game.Update(ref shouldPlay);
+               shouldPlay = game.Update();
             }
             Console.WriteLine("Hello World!");
         }

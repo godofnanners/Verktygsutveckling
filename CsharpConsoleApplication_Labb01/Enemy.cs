@@ -1,59 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace CsharpConsoleApplication_Labb01
 {
     class Enemy : Character
     {
-        int[] myPrey;
-        public Enemy(int[] aPos, char aChar) : base(aPos, aChar)
+        Player myPrey;
+        public Enemy(Vector2 aPos, char aChar) : base(aPos, aChar)
         {
 
         }
 
-        public void Init(int[] aPrey)
+        public void Init(Player aPrey)
         {
             myPrey = aPrey;
         }
 
-        public void Update()
+        public void Update(Level aLevel)
         {
-            HuntPlayer(myPrey);
-        }
+            int distanceX = (int)(Math.Abs(myPrey.Pos.X - myPos.X));
+            int distanceY = (int)(Math.Abs(myPrey.Pos.Y - myPos.Y));
 
-        public void HuntPlayer(int[] aPos)
-        {
-            int distanceX = Math.Abs(aPos[0]) + Math.Abs(myPos[0]);
-            int distanceY = Math.Abs(aPos[1]) + Math.Abs(myPos[1]);
+            CheckCollisionWithPrey();
 
-            if (distanceX>distanceY)
+            if (distanceX > distanceY)
             {
-                if (aPos[0] < myPos[0])
+                if (myPrey.Pos.X < myPos.X && (aLevel.GetCharAtPos(new Vector2(myPos.X - 1, myPos.Y)) == ' '))
                 {
                     Move(Directions.Left);
                 }
-                else if (aPos[0] > myPos[0])
+                else if (myPrey.Pos.X > myPos.X && (aLevel.GetCharAtPos(new Vector2(myPos.X + 1, myPos.Y)) == ' '))
                 {
                     Move(Directions.Right);
                 }
             }
             else
             {
-                if (aPos[1] < myPos[1])
+                if (myPrey.Pos.Y > myPos.Y && (aLevel.GetCharAtPos(new Vector2(myPos.X, myPos.Y + 1)) == ' '))
                 {
                     Move(Directions.Down);
                 }
-                else if (aPos[1] > myPos[1])
+                else if (myPrey.Pos.Y < myPos.Y && (aLevel.GetCharAtPos(new Vector2(myPos.X, myPos.Y - 1)) == ' '))
                 {
                     Move(Directions.Up);
                 }
             }
+
+            CheckCollisionWithPrey();
         }
 
-        public void Render()
+        private bool CheckCollisionWithPrey()
         {
-            Renderer.Render(myChar, myPos);
+            if (myPos==myPrey.Pos)
+            {
+                Console.Clear();
+                Console.WriteLine("Dead!");
+                Console.ReadKey();
+                Environment.Exit(0);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

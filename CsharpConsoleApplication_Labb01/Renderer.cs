@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace CsharpConsoleApplication_Labb01
@@ -17,12 +18,12 @@ namespace CsharpConsoleApplication_Labb01
             myRenderString = aLevel;
         }
 
-        public static void Render(char aGameObject,int[] aPos)
+        public static void Render(char aGameObject,Vector2 aPos)
         {
-            myRenderString[aPos[0]+aPos[1]*Level.Width] = aGameObject;
+            myRenderString[(int)aPos.X+(int)aPos.Y*Level.Width] = aGameObject;
         }
-
-        public void RenderCall()
+        
+        public static void RenderCall()
         {
             Console.Write(myRenderString);
         }
