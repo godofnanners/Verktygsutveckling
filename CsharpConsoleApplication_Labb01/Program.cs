@@ -12,7 +12,6 @@ namespace CsharpConsoleApplication_Labb01
             {
                shouldPlay = game.Update();
             }
-            Console.WriteLine("Hello World!");
         }
     }
 }

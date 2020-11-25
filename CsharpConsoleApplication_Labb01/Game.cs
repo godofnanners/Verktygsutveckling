@@ -11,7 +11,8 @@ namespace CsharpConsoleApplication_Labb01
     {
         private Level myLevel;
         private Player myPlayer;
-        private Enemy[] myEnemies;
+        private List<Enemy> myEnemies;
+        private List<PickUp> myPickUps;
         private Stopwatch myStopWatch;
         float myLastFrameTime;
         public Game()
@@ -22,9 +23,12 @@ namespace CsharpConsoleApplication_Labb01
             myLevel = new Level();
             myLevel.Init("Level.txt");
             myPlayer = new Player(playerPos, 'P');
-            myEnemies = new Enemy[2];
-            myEnemies[0] = new Enemy(new Vector2(40, 14), 'E');
-            myEnemies[1] = new Enemy(new Vector2(41, 18), 'E');
+            myEnemies = new List<Enemy>();
+            myPickUps = new List<PickUp>();
+            myEnemies.Add(new Enemy(new Vector2(40, 14), 'E'));
+            myEnemies.Add(new Enemy(new Vector2(41, 18), 'E'));
+            myPickUps.Add(new PickUp(new Vector2(20, 15), 'O'));
+            myPickUps.Add(new PickUp(new Vector2(20, 20), 'O'));
             myStopWatch = new Stopwatch();
 
             foreach (Enemy enemy in myEnemies)
@@ -32,13 +36,7 @@ namespace CsharpConsoleApplication_Labb01
                 enemy.Init(myPlayer);
             }
 
-            myLevel.Render();
-            foreach (Enemy enemy in myEnemies)
-            {
-                enemy.Render();
-            }
-            myPlayer.Render();
-            Renderer.RenderCall();
+            Render();
             myStopWatch.Start();
             myLastFrameTime = 0;
         }
@@ -60,7 +58,7 @@ namespace CsharpConsoleApplication_Labb01
 
             if (1000 < myStopWatch.ElapsedMilliseconds - myLastFrameTime)
             {
-                for (int i = 0; i < myEnemies.Length; i++)
+                for (int i = 0; i < myEnemies.Count; i++)
                 {
                     myEnemies[i].Update(myLevel);
                 }
@@ -69,9 +67,21 @@ namespace CsharpConsoleApplication_Labb01
                 Render();
             }
 
+            for (int i = 0; i < myPickUps.Count; i++)
+            {
+                if (myPickUps[i].Pos==myPlayer.Pos)
+                {
+                    myPickUps.RemoveAt(i);
+                    i--;
+                }
+            }
 
-
-
+            if (myPickUps.Count==0)
+            {
+                Console.Clear();
+                Console.WriteLine("Win!");
+                return false;
+            }
 
             return true;
         }
@@ -84,6 +94,10 @@ namespace CsharpConsoleApplication_Labb01
             foreach (Enemy enemy in myEnemies)
             {
                 enemy.Render();
+            }
+            foreach (PickUp pickup in myPickUps)
+            {
+                pickup.Render();
             }
             myPlayer.Render();
             Renderer.RenderCall();
