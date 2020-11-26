@@ -13,16 +13,21 @@ namespace CsharpConsoleApplication_Labb01
 
         }
 
+        public static char[] RenderString
+        {
+            get { return myRenderString; }
+        }
+
         public static void Render(char[] aLevel)
         {
             myRenderString = aLevel;
         }
 
-        public static void Render(char aGameObject,Vector2 aPos)
+        public static void Render(char aGameObject, Vector2 aPos)
         {
-            myRenderString[(int)aPos.X+(int)aPos.Y*Level.Width] = aGameObject;
+            myRenderString[(int)aPos.X + (int)aPos.Y * Level.Width] = aGameObject;
         }
-        
+
         public static void RenderCall()
         {
             Console.Write(myRenderString);

@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
+using System.IO;
 
 namespace CsharpConsoleApplication_Labb01
 {
@@ -29,6 +30,11 @@ namespace CsharpConsoleApplication_Labb01
             myEnemies.Add(new Enemy(new Vector2(41, 18), 'E'));
             myPickUps.Add(new PickUp(new Vector2(20, 15), 'O'));
             myPickUps.Add(new PickUp(new Vector2(20, 20), 'O'));
+            myPickUps.Add(new PickUp(new Vector2(10, 10), 'O'));
+            myPickUps.Add(new PickUp(new Vector2(50, 2), 'O'));
+            myPickUps.Add(new PickUp(new Vector2(30, 10), 'O'));
+
+
             myStopWatch = new Stopwatch();
 
             foreach (Enemy enemy in myEnemies)
@@ -48,9 +54,19 @@ namespace CsharpConsoleApplication_Labb01
             {
                 ConsoleKey keyPressed = Console.ReadKey().Key;
                 myPlayer.Update(myLevel, keyPressed);
+
+
                 if (keyPressed == ConsoleKey.Escape)
                 {
                     return false;
+                }
+                else if (keyPressed == ConsoleKey.S)
+                {
+                    File.WriteAllText("SavedGame.txt", new string(Renderer.RenderString));
+                }
+                else if (keyPressed == ConsoleKey.L)
+                {
+                    Load();
                 }
                 Render();
             }
@@ -101,6 +117,42 @@ namespace CsharpConsoleApplication_Labb01
             }
             myPlayer.Render();
             Renderer.RenderCall();
+        }
+
+        void Load()
+        {
+            myPickUps.Clear();
+            myEnemies.Clear();
+            myLevel.Init("SavedGame.txt");
+            for (int i = 0; i < myLevel.LevelSize; i++)
+            {
+                if (myLevel.GetCharAtIndex(i)=='P')
+                {
+                    int yPos = i / Level.Width;
+                    int xPos = i % Level.Width;
+
+                    myPlayer.Pos = new Vector2(xPos, yPos);
+                }
+                else if (myLevel.GetCharAtIndex(i) == 'E')
+                {
+                    int yPos = i / Level.Width;
+                    int xPos = i % Level.Width;
+
+                    myEnemies.Add(new Enemy(new Vector2(xPos, yPos), 'E'));
+                }
+                else if (myLevel.GetCharAtIndex(i) == 'O')
+                {
+                    int yPos = i / Level.Width;
+                    int xPos = i % Level.Width;
+
+                    myPickUps.Add(new PickUp(new Vector2(xPos, yPos), 'O'));
+                }
+            }
+            foreach (Enemy enemy in myEnemies)
+            {
+                enemy.Init(myPlayer);
+            }
+
         }
     }
 }

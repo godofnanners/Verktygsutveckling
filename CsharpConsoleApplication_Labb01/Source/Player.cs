@@ -11,10 +11,7 @@ namespace CsharpConsoleApplication_Labb01
             myLastPressedKey = ConsoleKey.Escape;
         }
 
-        public Vector2 Pos
-        {
-            get { return myPos; }
-        }
+        
 
         public bool Update(Level aLevel, ConsoleKey aKeyPressed)
         {

@@ -21,6 +21,12 @@ namespace CsharpConsoleApplication_Labb01
 
         }
 
+        public Vector2 Pos
+        {
+            get { return myPos; }
+            set { myPos = value; }
+        }
+
         protected void Move(Directions aDirection)
         {
             switch (aDirection)
