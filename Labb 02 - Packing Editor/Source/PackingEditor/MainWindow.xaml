@@ -1,0 +1,19 @@
+﻿<Window x:Class="PackingEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PackingEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel x:Name="FilesStackPanel" HorizontalAlignment="Left" Height="296" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" Drop="FilesStackPanel_Drop" AllowDrop="True" Background="#FFE6E6E6">
+            <ListBox x:Name="FileListBox" Height="295" RenderTransformOrigin="0.5,0.5"/>
+        </StackPanel>
+        <ProgressBar x:Name="ZippingProgressBar" HorizontalAlignment="Left" Height="40" Margin="10,321,0,0" VerticalAlignment="Top" Width="772"/>
+        <Button x:Name="ZipButton" Content="Zip" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Width="200" Height="43" Click="button_Click" FontSize="15"/>
+        <TextBox x:Name="ZipNameTextBox" HorizontalAlignment="Left" Height="23" Margin="415,376,0,0" TextWrapping="Wrap" Text="ZipFileName" VerticalAlignment="Top" Width="367" FontSize="15"/>
+        <Button x:Name="CleanButton" Content="Clean" HorizontalAlignment="Left" Margin="215,366,0,0" VerticalAlignment="Top" Width="195" Height="43" FontSize="15" Click="CleanButton_Click"/>
+
+    </Grid>
+</Window>
