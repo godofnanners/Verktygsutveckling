@@ -126,7 +126,17 @@ void CGame::UpdateCallBack()
 	myGameWorld->Render();
 }
 
-void CGame::ScaleTextures(float aScale)
+void CGame::SetSpritePath(std::string aPath)
 {
-	myGameWorld->ScaleTextures(aScale);
+	myGameWorld->SetSprite(aPath);
+}
+
+void CGame::SetSpritePosition(float aXPosition, float aYPosition)
+{
+	myGameWorld->SetSpritePosition(aXPosition, aYPosition);
+}
+
+void CGame::ClearSprites()
+{
+	myGameWorld->ClearSprites();
 }

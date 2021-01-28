@@ -98,7 +98,6 @@ namespace Labb_3__Verificationtool
                     listFile.Size = item.Length;
                     listFile.FullPath = item.DirectoryName;
                     myFiles.Add(listFile);
-
                 }
                 aListview.ItemsSource = myFiles;
                 return true;

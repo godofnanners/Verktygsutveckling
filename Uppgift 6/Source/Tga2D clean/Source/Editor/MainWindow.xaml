@@ -6,15 +6,25 @@
         xmlns:WinForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:Editor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Closing="Window_Closing" Width="1280">
-    <Grid Margin="0" Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="64"/>
-        </Grid.RowDefinitions>
-        <WindowsFormsHost x:Name="myFormsHost" Height="615" Width="1252" RenderTransformOrigin="0.506,0.498" Margin="10,10,10,0" >
+        Title="MainWindow" Height="720" Closing="Window_Closing" Width="1911.378">
+    <Grid Margin="0,0,-8,0" Background="#FF2C2C2C">
+
+        <WindowsFormsHost x:Name="myFormsHost" Margin="10,10,734,13" Width="1167" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="659">
             <WinForms:Panel x:Name="myEngineRenderPanel"></WinForms:Panel>
         </WindowsFormsHost>
-        <Slider x:Name="myScaleSlider" Margin="5,23,0,10" Grid.Row="1" Maximum="2" Minimum="0.1" ValueChanged="myScaleSlider_ValueChanged" Height="31" Width="1257"/>
+        <Canvas x:Name="Canvas_CurvePoints" HorizontalAlignment="Left" Height="400" Margin="1190,10,0,0" VerticalAlignment="Top" Width="711" Background="#FF3E3535" MouseLeftButtonDown="Canvas_CurvePoints_MouseLeftButtonDown"/>
+        <Button x:Name="Generate_button" Content="Generate" Margin="1225,443,362,0" VerticalAlignment="Top" Width="314" Height="62" FontSize="22" Foreground="White" BorderBrush="#FFE2E2E2" Click="Generate_button_Click" HorizontalAlignment="Left">
+            <Button.Background>
+                <SolidColorBrush Color="Black"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Clear_button" Content="Clear" Margin="1544,443,43,0" VerticalAlignment="Top" Width="314" Height="62" FontSize="22" Background="Black" BorderBrush="White" Foreground="White" Click="Clear_button_Click" HorizontalAlignment="Left"/>
+        <Button x:Name="LoadSprite_button" Content="Load Sprite" Margin="1225,513,43,0" VerticalAlignment="Top" Width="633" Height="62" FontSize="22" Foreground="White" BorderBrush="#FFE2E2E2" Background="Black" BorderThickness="2" Click="LoadSprite_button_Click" HorizontalAlignment="Left"/>
+
+        <StackPanel HorizontalAlignment="Left" Height="100" Margin="1182,510,0,0" VerticalAlignment="Top" Width="100"/>
+        <Frame x:Name="frame" HorizontalAlignment="Left" Height="57" Margin="1225,609,0,0" VerticalAlignment="Top" Width="633" BorderBrush="White" Background="#FF2C2C2C" BorderThickness="2"/>
+        <Label x:Name="label1" Content="Curve Types" HorizontalAlignment="Left" Margin="1247,580,0,0" VerticalAlignment="Top" BorderBrush="#FF2C2C2C" Background="#FF2C2C2C" FontSize="22" Foreground="White"/>
+        <RadioButton x:Name="Catmull_Rom_radioButton" Content="Catmull-Rom Curve" HorizontalAlignment="Left" Margin="1293,624,0,0" VerticalAlignment="Top" FontSize="22" Foreground="White" Checked="Catmull_Rom_radioButton_Checked"/>
+        <RadioButton x:Name="Bezier_radioButton" Content="Bezier Curve" HorizontalAlignment="Left" Margin="1642,624,0,0" VerticalAlignment="Top" FontSize="22" Foreground="White" Checked="Bezier_radioButton_Checked"/>
     </Grid>
 </Window>
